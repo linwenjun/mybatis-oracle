@@ -1,9 +1,32 @@
-apply plugin: 'java'
-apply plugin: 'idea'
+
 
 repositories {
     jcenter()
 }
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.flywaydb:flyway-gradle-plugin:4.2.0'
+        classpath files('libs/ojdbc7.jar')
+    }
+}
+
+// plugins {
+//     id "org.flywaydb.flyway" version "4.2.0"
+// }
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.flywaydb.flyway'
+
+
+
+
 
 compileJava {
     sourceCompatibility = "1.8"
@@ -13,9 +36,9 @@ compileJava {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'org.mybatis:mybatis:3.4.4'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile files('libs/ojdbc7.jar')
-
+    runtime files('libs/ojdbc7.jar')
 
     testCompile 'junit:junit:4.12'
 }
+
+

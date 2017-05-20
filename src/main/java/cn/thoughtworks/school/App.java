@@ -16,10 +16,10 @@ public class App {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
         SqlSession session = sqlSessionFactory.openSession();
+
         BlogMapper mapper = session.getMapper(BlogMapper.class);
         Blog blog = mapper.selectBlog(1);
 
         System.out.print(blog);
-
     }
 }
