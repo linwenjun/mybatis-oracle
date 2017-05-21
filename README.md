@@ -46,9 +46,11 @@
 ```
 
 2. 直接运行 App 类主方法
-3. 打开浏览器，输入 http://localhost:8080/blogs
 
 ```
 ./gradlew bootrun
 ```
+
+3. 打开浏览器，输入 http://localhost:8080/blogs
+
 
