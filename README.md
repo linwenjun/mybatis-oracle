@@ -8,7 +8,7 @@
 
      ```
      # 作者使用了sath89/oracle-xe-11g的image
-     docker run -d -p 8080:8080 -p 1521:1521 sath89/oracle-xe-11g
+     docker run -d -p 8888:8080 -p 1521:1521 sath89/oracle-xe-11g
      ```
 3. IDE 推荐使用intellij idea
 
@@ -45,4 +45,10 @@
 ./graldew flywaymigrate
 ```
 
-2. 直接运行 App 类主方法即可
+2. 直接运行 App 类主方法
+3. 打开浏览器，输入 http://localhost:8080/blogs
+
+```
+./gradlew bootrun
+```
+

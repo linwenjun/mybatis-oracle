@@ -12,21 +12,16 @@ buildscript {
 
     dependencies {
         classpath 'org.flywaydb:flyway-gradle-plugin:4.2.0'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE'
         classpath files('libs/ojdbc7.jar')
     }
 }
 
-// plugins {
-//     id "org.flywaydb.flyway" version "4.2.0"
-// }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.flywaydb.flyway'
-
-
-
-
+apply plugin: 'org.springframework.boot'
 
 compileJava {
     sourceCompatibility = "1.8"
@@ -36,6 +31,7 @@ compileJava {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'org.mybatis:mybatis:3.4.4'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE'
     runtime files('libs/ojdbc7.jar')
 
     testCompile 'junit:junit:4.12'

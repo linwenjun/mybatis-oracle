@@ -240,3 +240,4 @@ fabric.properties
 # JIRA plugin
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
+/mybatis-oracle.iml
