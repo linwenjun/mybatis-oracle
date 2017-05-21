@@ -1,6 +1,6 @@
 package cn.wenjun.learning.dao;
 
-import cn.wenjun.learning.Blog;
+import cn.wenjun.learning.entity.Blog;
 
 import java.util.List;
 

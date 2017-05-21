@@ -1,4 +1,4 @@
-package cn.wenjun.learning;
+package cn.wenjun.learning.entity;
 
 import java.util.Date;
 

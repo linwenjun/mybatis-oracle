@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.wenjun.learning.dao.BlogDAO">
-    <select id="getOne"  resultType="cn.wenjun.learning.Blog">
+    <select id="getOne"  resultType="cn.wenjun.learning.entity.Blog">
         select ID as id, NAME as name, UPDATE_AT as updateAt from BLOG where ID = #{id}
     </select>
 
-    <select id="getAll"  resultType="cn.wenjun.learning.Blog">
+    <select id="getAll"  resultType="cn.wenjun.learning.entity.Blog">
         select ID as id, NAME as name, UPDATE_AT as updateAt from BLOG
     </select>
 </mapper>
