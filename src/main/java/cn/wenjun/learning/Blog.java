@@ -1,4 +1,4 @@
-package cn.thoughtworks.school;
+package cn.wenjun.learning;
 
 import java.util.Date;
 

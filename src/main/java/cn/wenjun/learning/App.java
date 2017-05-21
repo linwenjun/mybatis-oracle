@@ -1,5 +1,6 @@
-package cn.thoughtworks.school;
+package cn.wenjun.learning;
 
+import cn.wenjun.learning.dao.BlogDAO;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,7 +18,7 @@ public class App {
 
         SqlSession session = sqlSessionFactory.openSession();
 
-        BlogMapper mapper = session.getMapper(BlogMapper.class);
+        BlogDAO mapper = session.getMapper(BlogDAO.class);
         Blog blog = mapper.selectBlog(1);
 
         System.out.print(blog);
