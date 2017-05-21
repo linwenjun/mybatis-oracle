@@ -1,6 +1,7 @@
 package cn.wenjun.learning;
 
 import cn.wenjun.learning.dao.BlogDAO;
+import cn.wenjun.learning.services.BlogService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,28 +14,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @Controller
 @EnableAutoConfiguration
 public class App {
 
-    private static Blog getBlog() throws IOException {
+    private BlogService blogService = new BlogService();
+
+    private SqlSession getSession() throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
         SqlSession session = sqlSessionFactory.openSession();
 
-        BlogDAO mapper = session.getMapper(BlogDAO.class);
-        Blog blog = mapper.selectBlog(1);
-
-        return blog;
+        return session;
     }
+
 
     @RequestMapping("/blogs")
     @ResponseBody
-    Blog findBlog() throws IOException {
-        return getBlog();
+    List<Blog> getAllBlog() throws IOException {
+        SqlSession session = getSession();
+        BlogDAO blogDAO = session.getMapper(BlogDAO.class);
+
+        blogService.setBlogDAO(blogDAO);
+
+        return blogService.getAll();
     }
 
     public static void main(String args[]) throws IOException {
