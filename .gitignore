@@ -242,3 +242,4 @@ fabric.properties
 # Crashlytics plugin (for Android Studio and IntelliJ)
 /mybatis-oracle.iml
 /logs/
+/.vscode/
