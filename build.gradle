@@ -8,6 +8,7 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
+        jcenter()
     }
 
     dependencies {
@@ -23,6 +24,7 @@ apply plugin: 'idea'
 apply plugin: 'org.flywaydb.flyway'
 apply plugin: 'org.springframework.boot'
 
+
 compileJava {
     sourceCompatibility = "1.8"
     targetCompatibility = "1.8"
@@ -37,4 +39,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'cn.wenjun.learning.App'
+    )
+  }
+}
