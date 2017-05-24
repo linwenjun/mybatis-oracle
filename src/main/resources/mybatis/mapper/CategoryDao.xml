@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wenjun.learning.dao.CategoryDAO">
+
+    <resultMap id="detailedCategoryResultMap" type="cn.wenjun.learning.entity.Category">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="updateAt" column="UPDATE_AT"/>
+        <association property="origin" javaType="cn.wenjun.learning.entity.Category">
+            <id property="id" column="ORIGIN_ID"/>
+            <result property="name" column="ORIGIN_NAME"/>
+            <result property="updateAt" column="ORIGIN_UPDATE_AT"/>
+        </association>
+    </resultMap>
+
+    <select id="getById"  resultMap="detailedCategoryResultMap">
+        SELECT
+            new.ID as ID,
+            new.NAME as NAME,
+            new.UPDATE_AT as UPDATE_AT,
+            origin.ID as ORIGIN_ID,
+            origin.name as ORIGIN_NAME,
+            origin.UPDATE_AT as ORIGIN_UPDATE_AT
+        FROM CATEGORY new
+        LEFT JOIN CATEGORY origin ON new.ORIGIN_ID = origin.ID
+        WHERE new.ID = #{id}
+    </select>
+</mapper>
