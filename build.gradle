@@ -32,4 +32,5 @@ dependencies {
     runtime files('libs/ojdbc7.jar')
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile('com.ninja-squad:DbSetup:2.1.0')
 }
