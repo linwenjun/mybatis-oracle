@@ -1,5 +1,7 @@
 package cn.wenjun.learning;
 
+import cn.wenjun.learning.dao.BlogDAO;
+import cn.wenjun.learning.entity.Blog;
 import cn.wenjun.learning.util.CommonOperations;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.DbSetupTracker;
@@ -22,6 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.sql.DataSource;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.ninja_squad.dbsetup.Operations.insertInto;
 import static com.ninja_squad.dbsetup.Operations.sequenceOf;
@@ -35,6 +38,9 @@ public class AppTest implements ApplicationContextAware {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @Autowired
+    private BlogDAO blogDAO;
 
     private ApplicationContext applicationContext;
     private static DbSetupTracker TRACKER = new DbSetupTracker();
@@ -64,13 +70,14 @@ public class AppTest implements ApplicationContextAware {
     @Test
     public void contextLoad() throws Exception {
         Assertions.assertThat(this.restTemplate.getForObject("http://localhost:" + port +"/blogs", String.class))
-                .contains("first");
+                .contains("wangpu");
     }
 
     @Test
     public void first_test_for_common_use() {
         TRACKER.skipNextLaunch();
-        Assertions.assertThat(true).isTrue();
+        List<Blog> blogs = blogDAO.getAll();
+        Assertions.assertThat(blogs.size()).isEqualTo(100);
     }
 
     @Test
